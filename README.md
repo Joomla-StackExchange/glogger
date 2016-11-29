@@ -1,4 +1,4 @@
-# glogger: Joomla Global Logging
+# glogger: Extended Joomla Logging Tool
 <p>gLogger started as a simple class to extend the standard JLog class so that the logging information was saved in a table rather than in text files scattered around the \logs folder.  Initially, it just stored standard data so that I could view in a single place.  I quickly realized that all sorts of other pertinant data was available, and that may other functions could be incorporated.
 </p>
 
