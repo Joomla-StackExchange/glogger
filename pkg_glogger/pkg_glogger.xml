@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<extension type="package" version="3.6" method="upgrade">
+    <name>gLogger Package</name>
+    <author>Greg Podesta</author>
+    <creationDate>November 2016</creationDate>
+    <packagename>glogger</packagename>
+    <version>1.0.0</version>
+    <packager>Greg Podesta</packager>
+    <description>gLogger Component and Library Package</description>
+    <scriptfile>pkg_script.php</scriptfile>
+    <files folder="packages">
+        <file type="component" id="com_glogger" >com_glogger.zip</file>
+        <file type="library" id="glogger">lib_glogger.zip</file>
+    </files>
+</extension>
