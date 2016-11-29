@@ -45,7 +45,22 @@ $gLogger->addEntry("Something to write to error.php",$JLog::ERROR);
 <li>Optional Table Row ID</li>
 </ul>
 
-<p>So, at the end of this script, instead of a text file <em>probably</em> (but not necessarily) called error.php, is a single row in the database that contains anything you could possible need to see what happened along the way - <u>and all searchable with SQL</u> instead of a text file editor.  In my case, I use SQL to see all the activity in a particular Joomla session: before, during, and after they were logged in.  I can see what tables were affected, or if unexpected results occurred - all in seconds, not hours, by merely slicing and dicing with SQL statements.</p>
+<p>So, at the end of this script, instead of a text file <em>probably</em> (but not necessarily) called error.php, is a single row in the database that contains anything you could possible need to see what happened along the way - <u>and all searchable with SQL</u> instead of a text file editor.  In my case, I use SQL to see all the activity in a particular Joomla session: before, during, and after they were logged in.  I can see what tables were affected, or if unexpected results occurred - all in seconds, not hours, by merely slicing and dicing with SQL statements.  Additionally, each row can be Flagged by authorized gLog users, or have a Reference Number (such as a support ticket number) added to it for futher SQL refinement.</p>
+
+<h3>Audits and Alerts</h3>
+<p>The gLogger table is self cleaning, because give then amount of data that can be stored, and the number of entries, it has the potential of growing rather large and rather quickly.  To account for that, the option to save "Audit copies" of gLogger entries in a separate table has been added.  The Component Options allows you to specify which tables should be audited, and when a gLogger entry is made that has a Row # for any of those tables, the record is stored in <code>#__glogger_audit</code> as well as <code>#__glogger</code>.  Records in <code>#__glogger_audit</code> are never automatically deleted.</p>
+<p>You can also configure an email address to send an alert to if any of the specifed Priorities are logged: 
+<ol>
+<li>Emergency</li>
+<li>Alert</li>
+<li>Critical</li>
+<li>Error</li>
+<li>Warning</li>
+<li>Notice</li>
+<li>Info</li>
+<li>Debug</li>
+</ol>
+</p>
 
 <h2>The Component</h2>
 <p>The installation package installs the gLogger Library (a single php file), as well as the UI Component.  It is not a component that serves any purpose for a general user, so makes some assumptions about the technical abilities of anyone using it.<p>
