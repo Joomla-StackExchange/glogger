@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="library" method="upgrade" version="3.6">
+	<name>gLogger</name>
+	<libraryname>glogger</libraryname>
+    <creationDate>November 2016</creationDate>
+    <author>Greg Podesta</author>
+    <authorEmail>gdp.extras@gmail.com</authorEmail>
+    <copyright>Copyright (C) 2016 Greg Podesta</copyright>
+    <license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only</license>
+	<version>1.0.0</version>
+	<description>LIB_GLOGGER_XML_DESCRIPTION</description>
+
+	<files>
+        <filename>Formattedtext.php</filename>
+		<filename>examples.php</filename>
+		<filename>index.html</filename>
+    </files>
+
+	<languages>
+		<language tag="en-GB">language/en-GB.lib_glogger.ini</language>
+		<language tag="en-GB">language/en-GB.lib_glogger.sys.ini</language>
+	</languages>
+
+	<updateservers>
+	</updateservers>
+</extension>
