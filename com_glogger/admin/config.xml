@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+    <fieldset name="glogger" label="JACTION_COMPONENT_SETTINGS" description="JACTION_COMPONENT_SETTINGS">
+
+        <field name="jAddentry" type="radio" default="0" label="Execute Joomla addEntry" description="By default, gLogger will write logs to the database, and NOT write to files" class="btn-group btn-group-yesno">
+            <option value="0">JNO</option>
+            <option value="1">JYES</option>
+        </field>
+        <field name="messageformat" type="list" multiple="true" default="" label="Customize Message Fields" description="In the order you want them to appear, choose the Log Entry fields you wish to record.  If blank, the default is used: {DATETIME} {CLIENTIP} {SCRIPT} {PRIORITY} {CATEGORY} {MESSAGE}">
+            <option value="DATETIME">Date/Time</option>
+            <option value="CLIENTIP">Remote IP</option>
+            <option value="SCRIPT">Backtrace</option>
+            <option value="PRIORITY">Priority</option>
+            <option value="CATEGORY">Category</option>
+            <option value="MESSAGE">Message</option>
+        </field>
+        <field name="saveonadd" type="radio" default="0" label="Save on each Add" description="By default, gLogger will wait on the object is destroyed to save.  Setting this to Yes will cause gLogger to save itself each time an Entry or a Data item is added" class="btn-group btn-group-yesno">
+            <option value="0">JNO</option>
+            <option value="1">JYES</option>
+        </field>
+        <field name="purgeDays" type="text" default="30" class="input-small" label="Days to keep logs" description="gLogger auto-deletes old files, enter 0 to keep all logs" filter="integer" />
+
+        <field name="audit_tables"
+            type="repeatable"
+            icon="list"
+            description="Changes made to these tables will automaticall have a copy of the gLogger record saved to gLogger_audit, which is never automatically purged."
+            label="Tables for Audit Trail"
+            >
+            <fieldset hidden="true" name="audit_table" repeat="true" >
+                <field name="tables"
+                    label="Tables to have Audit Trail records created"
+                    size="50"  description="Generic #__ prefix will resolve to Joomla prefix"
+                    type="text"
+                    class="input-xlarge" />
+            </fieldset>
+        </field>
+
+<field name="alert_email" type="email"
+    label="Alert Email Address"
+    description="If a gLog entry with a configured priority is logged, than an email will be sent to this address"
+    required="false"
+    size="30"
+    class="inputbox"
+    validate="email" />
+
+        <field name="alert_priorities" type="list" multiple="true" default="" label="Alert Priorities" description="Choose the priorites that will have an email sent when they are logged with gLogger">
+            <option value="1">EMERGENCY</option>
+            <option value="2">ALERT</option>
+            <option value="4">CRITICAL</option>
+            <option value="8">ERROR</option>
+            <option value="16">WARNING</option>
+            <option value="32">NOTICE</option>
+            <option value="64">INFO</option>
+            <option value="128">DEBUG</option>
+        </field>
+
+
+    </fieldset>
+    <fieldset name="permissions" label="JCONFIG_PERMISSIONS_LABEL" description="JCONFIG_PERMISSIONS_DESC">
+        <field
+            name="rules"
+            type="rules"
+            label="JCONFIG_PERMISSIONS_LABEL"
+            class="inputbox"
+            filter="rules"
+            validate="rules"
+            component="com_glogger"
+            section="component"
+            />
+    </fieldset>
+</config>
