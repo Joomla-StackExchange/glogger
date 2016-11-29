@@ -1,0 +1,145 @@
+/*#gloggers table table td:nth-child(2){*/
+/*}*/
+/*.glogger_list table tbody tr td:nth-child(3) {*/
+/*    color:red !important;*/
+/*}*/
+table.glogger_list {
+    font-size:.9em;
+    color:black;
+}
+table.glogger_list tr td:nth-child(2) {  /* Datetime */
+    white-space: nowrap;
+}
+table.glogger_list tr td:nth-child(4) { /* Source*/
+    width:1%;
+    white-space: nowrap;
+    font-family:monospace;
+    font-size:12px;
+    padding-right:10px;
+}
+table.glogger_list tr td:nth-child(5) { /* Title */
+    font-size:.9em;
+}
+table.glogger_list tr td:nth-child(7) { /* Table ID */
+    border-left: 0px !important;
+}
+
+table.glogger_list tr td:nth-child(8) { /* Log Count */
+    width:1%;
+}
+table.glogger_list tr td:nth-child(9) { /* Data Count*/
+    width:1%;
+    border-left: 0px !important;
+}
+table.glogger_list tr td:nth-child(10) { /* Datasize */
+    width:1%;
+    border-left: 0px !important;
+    text-align:right;
+}
+
+
+table.glogger_list tr td:nth-child(12) { /* Ref_num */
+    /*    white-space: nowrap;*/
+    font-family:monospace;
+    font-size:12px;
+}
+table.glogger_list tr td:nth-child(13) { /* Flag */
+    border-left: 0px !important;
+}
+.td-log {
+    display:none;
+}
+pre.gLogs {
+    background-color:white;
+}
+pre.gLog {
+    line-height:14px;
+    font-size:12px;
+    max-height:400px;
+    overflow-x: auto;
+    overflow-y: auto;
+    /*    height: 400px;*/
+    overflow: auto;
+    /*    background-color: #eeeeee;*/
+    /*    background-color:white;*/
+    word-break: normal !important;
+    word-wrap: normal !important;
+    white-space: pre !important;
+    color:black;
+    width:98%;
+    border:1px solid silver;
+}
+pre.logged-item {
+    background-color:#F5F5F5;
+    margin: 0px 0 10px;
+    max-height:300px;
+    overflow-x: auto;
+    overflow-y: auto;
+}
+div.gLog{
+    font-family:monospace;
+    height: auto;
+    max-height: 400px;
+    overflow: auto;
+    background-color: #eeeeee;
+    word-break: normal !important;
+    word-wrap: normal !important;
+    white-space: pre !important;
+    background-color:white;
+    color:black;
+    width:100%;
+}
+.table-dataXXX
+{
+    width: 100%;
+    /*    margin-bottom: 10px;
+    white-space: nowrap;
+    /*    padding: 5px;*/
+    display: -moz-flex;
+    display: flex;
+}
+.table-name
+{
+    white-space: nowrap;
+    overflow: hidden;
+    flex-grow: 1;
+    flex-shrink: 1;
+    max-width: 400px;
+    white-space: nowrap;
+    /*    padding: 5px;*/
+    border: 1px dotted white;
+    margin: 0px;
+}
+
+.filter_table_id, .flagged
+{
+    width:1%;
+}
+
+.node_createtime{
+    margin-right:10px;
+}
+.node_message {
+/*    font-weight:bold;*/
+}
+.node_pri {
+    display: inline-block;
+    width: 65px;
+}
+.node_fw {
+    font-family:monospace;
+    font-size:1em;
+}
+.glog-Emergency {background-color:red;  font-weight:bold;}
+.glog-Alert     {color:red;             font-weight:normal;}
+.glog-Critical  {color:orangered;       font-weight:bold;}
+.glog-Error     {color:orangered;       font-weight:normal;}
+.glog-Warning   {color:orange;          font-weight:normal;}
+.glog-Notice    {color:green;           font-weight:normal;}
+.glog-Info      {color:inherit;         font-weight:normal;}
+.glog-Debug     {color:fuchsia;         font-weight:normal;}
+
+
+
+/* CSS3 Checkbox Experiment */
+/* From http://stackoverflow.com/questions/24322599/css-why-cannot-change-checkbox-color-whatever-i-do */
