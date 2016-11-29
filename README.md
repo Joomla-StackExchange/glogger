@@ -2,8 +2,59 @@
 <p>gLogger started as a simple class to extend the standard JLog class so that the logging information was saved in a table rather than in text files scattered around the \logs folder.  Initially, it just stored standard data so that I could view in a single place.  I quickly realized that all sorts of other pertinant data was available, and that may other functions could be incorporated.
 </p>
 
-<p>Here's my initial offering.  It started as a Class to extend JLog, and then a quick UI to see the data, then some methods, then some of this, and some of that to see if....  Long story short, it was never "designed", it's been a series of tweaks and experiments to see how usable I can make it.  If there is any serious interest in using it, I'll likely refactor some things and clean up the code - please don't judge me based on the guts of this thing, lol.</p>
+<h2>The Problem</h2>
+<p>Our environment involves updates being made to our tables from locations that range from Seattle to Western Europe.  Those updates are done via Joomla Forms, API calls, cURL, as well as a variety of overnight jobs that do mass updating.  There are potentially dozens of IDs from dozens of table that are all correlated in some way or another. To futher complicate it, most of the activity is done without direct User Authentication.  Their IP is link to a User or to an Account, and that activity also has to be considered in the looking at the activity logs.</p>
 
+<p>Trying to pin down when or where a particular table was being updated (and how) was becoming a nightmare using JLog because it simply writes entries to a text file, giving us thousands of log entries per week in an uncontolled list of text files.  These JLog entries are mixed in with entries from other un-related components that also do logging, so it would often take hours to sift through them.  We had to weed out unwanted IP addresses, consider timezones, unrelated components, and finally gather up the sequence of events to isolate the actual event that I/we were interested in.</p>
+
+<h2>The Solution</h2>
+gLogger simply extends the JLog class, and adds a new method 
+
+Native JLog code (to write a line to error.php):
+<pre>
+$entry = new JLogEntry("Some text to log", JLog::INFO);
+$logger->addEntry($entry);
+</pre>
+
+gLogger code (to save a line to the gLogger Object):
+<pre>
+$gLogger = new gLogger();
+// Log some text
+$gLogger->logEntry("Some text to log",$JLog::INFO);
+
+// Save a variable to the gLogger Object
+$gLogger = new gLogger();
+$gLogger->logData($myArray);
+
+// Log some more text
+$gLogger->logEntry("Some more text to log",$JLog::INFO);
+
+// You can still use native JLog method to write something to error.php
+$gLogger->addEntry("Something to write to error.php",$JLog::ERROR);
+</pre>
+
+<p>The gLogger methods store everything in the object instead of immediately writing it to a text file.  When the gLogger is destroyed at the end of the script, all the text and data saved along the way is saved in a single database record.  Along with the text and data, is other metadata, such as :
+<ul>
+<li>The source of the log</li>
+<li>A title of your choosing</li>
+<li>Userid</li>
+<li>The remote IP address</li>
+<li>Full backtrace/callstack leading up to where the gLogger method is used</li>
+<li>Joomla Session ID</li>
+<li>Optional Table Name</li>
+<li>Optional Table Row ID</li>
+</ul>
+
+<p>So, at the end of this script, instead of a text file <em>probably</em> (but not necessarily) called error.php, is a single row in the database that contains anything you could possible need to see what happened along the way - <u>and all searchable with SQL</u> instead of a text file editor.  In my case, I use SQL to see all the activity in a particular Joomla session: before, during, and after they were logged in.  I can see what tables were affected, or if unexpected results occurred - all in seconds, not hours, by merely slicing and dicing with SQL statements.</p>
+
+<h2>The Component</h2>
+<p>The installation package installs the gLogger Library (a single php file), as well as the UI Component.  It is not a component that serves any purpose for a general user, so makes some assumptions about the technical abilities of anyone using it.<p>
+
+<p>The initial solution began as a simple extension to JLog.  I then used a well known free component creator to generate a UI so that I could easily view and organize the output.  The generated code has some inherent glitches, so I patched those as I encountered them, and began a series of code/style experiments to see what would improve it for my use. In short, it was never "designed", but has been a series of tweaks and experiments to see how I might make the UI more useful in various ways.</p>
+
+<p>Please don't judge me based on the guts of this thing, I did it all over the Thanksgiving break, lol.  Judging by the near zero interest in the JSE question that prompted it, I'd be surprised if anyone ever uses it, but if there is any serious interest in using it, I'd like to refactor some things and clean up the code</p>
+
+<hr/>
 <p><strong>Main gLogger Listing View</strong> Allows sorting/filtering/selelection of all gLog records in the database.
   <img src="screenshots/01_glogs.png" width="100%"/>
 </p>
